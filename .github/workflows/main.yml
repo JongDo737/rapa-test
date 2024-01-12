@@ -16,7 +16,7 @@ jobs:
           java-version: '11'
           cache: 'gradle'
       - name: Extract release tag
-        run: echo "RELEASE_TAG=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
       
       - name: chmod gradle
         run: chmod +x ./gradlew
@@ -33,7 +33,7 @@ jobs:
           
       - name: docker build
         run: |
-          echo "Deploying version $RELEASE_TAG"
+          echo "Deploying version ${{ env.RELEASE_VERSION }} "
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:${{ env.RELEASE_VERSION }}  .
       - name: docker images check
         run: docker images
