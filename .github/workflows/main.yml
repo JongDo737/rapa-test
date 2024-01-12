@@ -31,7 +31,6 @@ jobs:
           
       - name: docker build
         run: |
-          cp ./build/libs/*.war ./Dockerfile
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:latest .
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:latest .
       - name: docker images check
