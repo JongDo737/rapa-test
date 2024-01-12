@@ -16,7 +16,7 @@ jobs:
           java-version: '11'
           cache: 'gradle'
       - name: Extract release tag
-        run: echo "RELEASE_TAG=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+        run: echo "RELEASE_TAG=${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
       
       - name: chmod gradle
         run: chmod +x ./gradlew
