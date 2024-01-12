@@ -34,8 +34,7 @@ jobs:
       - name: docker build
         run: |
           echo "Deploying version $RELEASE_TAG"
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:$RELEASE_TAG .
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:$RELEASE_TAG .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:${{ env.RELEASE_VERSION }}  .
       - name: docker images check
         run: docker images
       
@@ -47,5 +46,4 @@ jobs:
           
       - name: docer push
         run: | 
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/rapa-cidc:${{ env.RELEASE_VERSION }} 
